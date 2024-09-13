@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using FileProcessingApp;
+﻿using FileProcessingApp;
 using System.Diagnostics;
 
 var inputFilePath = "input.txt";
@@ -8,25 +7,17 @@ var outputFilePath = "output.txt";
 // Start the stopwatch for the entire process
 var totalStopwatch = Stopwatch.StartNew();
 
+
 var lines = await File.ReadAllLinesAsync(inputFilePath);
-var processedLines = new List<string>();
 
-// Start the stopwatch for processing lines
-var processingStopwatch = Stopwatch.StartNew();
-
-foreach (var line in lines)
-{
-    var processedLine = await Processor.ProcessLineAsync(line);
-    processedLines.Add(processedLine);
-}
-
-// Stop the stopwatch for processing lines
-processingStopwatch.Stop();
-
-await File.WriteAllLinesAsync(outputFilePath, processedLines);
+ILineProcessor processor = new LineProcessor();
+// Process lines using the current method (LineProcessor)
+var processedLines = await processor.ProcessLinesAsync(lines);
 
 // Stop the stopwatch for the entire process
 totalStopwatch.Stop();
+
+await File.WriteAllLinesAsync(outputFilePath, processedLines);
 
 // Validate output
 var outputFileHash = Utilities.ComputeFileHash(outputFilePath);
@@ -34,5 +25,5 @@ Console.WriteLine($"Output File Hash: {outputFileHash}");
 
 // Output the run-time
 Console.WriteLine($"Total run-time: {totalStopwatch.ElapsedMilliseconds} ms");
-Console.WriteLine($"Processing run-time: {processingStopwatch.ElapsedMilliseconds} ms");
-// Compare with the expected hash
+
+// Method to process lines using the current method

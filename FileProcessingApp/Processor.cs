@@ -1,24 +1,28 @@
-﻿using System.Security.Cryptography;
+﻿using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FileProcessingApp;
-public static class Processor
+public class Processor
 {
-    public static async Task<string> ProcessLineAsync(string line)
+    private ILineProcessor processor;
+
+    public Processor(ILineProcessor processor)
+    {
+        this.processor = processor;
+    }
+    public async Task<string> ProcessLineAsync(string line, ILineProcessor processor)
     {
         // Simulate a costly operation asynchronously
-        return await Task.Run(() => ProcessLine(line));
+        return await Task.Run(() => processor.ProcessLine(line));
     }
 
-    public static string ProcessLine(string line)
+    //Baseline (think, original) method for benchmarking
+    public  string ProcessLine(string line)
     {
-        // Simulate a costly operation (e.g., hashing)
-        using (var sha256 = SHA256.Create())
-        {
-            var bytes = Encoding.UTF8.GetBytes(line);
-            var hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
-        }
+        return processor.ProcessLine(line);
     }
+
+
+
 }

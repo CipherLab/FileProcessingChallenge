@@ -3,4 +3,5 @@ using BenchmarkDotNet.Running;
 using FileProcessingBenchmark;
 
 Console.WriteLine("Hello, World!");
-var summary = BenchmarkRunner.Run<ProcessingBenchmarks>();
+var processLineSummary = BenchmarkRunner.Run<ProcessingLineBenchmarks>();
+var processLinesSummary = BenchmarkRunner.Run<ProcessingLinesBenchmarks>();
