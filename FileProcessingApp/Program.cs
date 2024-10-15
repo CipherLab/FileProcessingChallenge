@@ -10,7 +10,7 @@ var totalStopwatch = Stopwatch.StartNew();
 
 var lines = await File.ReadAllLinesAsync(inputFilePath);
 
-ILineProcessor processor = new LineProcessor();
+ILineProcessor processor = new CPUBoundLineProcessor();
 // Process lines using the current method (LineProcessor)
 var processedLines = await processor.ProcessLinesAsync(lines);
 

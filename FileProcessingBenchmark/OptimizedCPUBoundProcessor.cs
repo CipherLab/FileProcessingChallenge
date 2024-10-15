@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-public class OptimizedLineProcessor : ILineProcessor
+public class OptimizedCPUBoundProcessor : ILineProcessor
 {
     public async Task<string> ProcessLineAsync(string line)
     {

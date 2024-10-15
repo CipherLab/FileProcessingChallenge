@@ -4,7 +4,7 @@ using System.Text;
 namespace FileProcessingApp;
 
 //baseline
-public class LineProcessor : ILineProcessor
+public class CPUBoundLineProcessor : ILineProcessor
 {
     public async Task<string> ProcessLineAsync(string line)
     {

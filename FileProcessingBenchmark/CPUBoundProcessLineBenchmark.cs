@@ -8,31 +8,34 @@ namespace FileProcessingBenchmark
 {
     [MemoryDiagnoser]
     [SimpleJob(iterationCount: 10)] // Run each benchmark 10 times
-    public class ProcessingLineBenchmarks
+    public class CPUBoundProcessingLineBenchmarks
     {
         private string sampleLine;
 
-        private ILineProcessor BaseProcessor = new LineProcessor();
-        private ILineProcessor OptimizedProcessor = new OptimizedLineProcessor();
+        private ILineProcessor CPUBoundLineProcessor = new CPUBoundLineProcessor();
+        private ILineProcessor OptimizedCPUBoundProcessor = new OptimizedCPUBoundProcessor();
         [GlobalSetup]
         public void Setup()
         {
             sampleLine = "This is a sample line for benchmarking purposes.";
-        
+
         }
 
 
         [Benchmark(Baseline = true)]
         public void ProcessLine_Synchronous()
         {
-            var processedLine = BaseProcessor.ProcessLine(sampleLine);
+            var processedLine = CPUBoundLineProcessor.ProcessLine(sampleLine);
         }
 
         [Benchmark]
         public void ProcessLine_Optimized()
         {
-            var processedLine = OptimizedProcessor.ProcessLine(sampleLine);
+            var processedLine = OptimizedCPUBoundProcessor.ProcessLine(sampleLine);
         }
+
+
+
 
     }
 }
