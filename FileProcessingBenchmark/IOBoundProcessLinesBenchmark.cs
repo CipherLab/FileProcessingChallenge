@@ -1,10 +1,8 @@
 ﻿//Updated ProcessLinesBenchmark.cs
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using Bogus;
 using FileProcessingApp;
-using System.Threading.Tasks;
 
 namespace FileProcessingBenchmark
 {

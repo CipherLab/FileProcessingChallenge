@@ -25,5 +25,3 @@ Console.WriteLine($"Output File Hash: {outputFileHash}");
 
 // Output the run-time
 Console.WriteLine($"Total run-time: {totalStopwatch.ElapsedMilliseconds} ms");
-
-// Method to process lines using the current method

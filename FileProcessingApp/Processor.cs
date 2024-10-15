@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace FileProcessingApp;
+﻿namespace FileProcessingApp;
 public class Processor
 {
     private ILineProcessor processor;
@@ -18,7 +14,7 @@ public class Processor
     }
 
     //Baseline (think, original) method for benchmarking
-    public  string ProcessLine(string line)
+    public string ProcessLine(string line)
     {
         return processor.ProcessLine(line);
     }
